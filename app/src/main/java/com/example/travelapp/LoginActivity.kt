@@ -12,26 +12,28 @@ import androidx.appcompat.app.AppCompatActivity
 //import com.example.travelapp.User1.Use.setEmail
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
     private var auth: FirebaseAuth? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FirebaseApp.initializeApp(this)
         setContentView(R.layout.activity_login)
         auth = FirebaseAuth.getInstance()
         val emailEditText = findViewById<TextInputEditText>(R.id.emailEditText)
         val passwordEditText = findViewById<TextInputEditText>(R.id.passwordEditText)
         val registerButton = findViewById<MaterialButton>(R.id.signupButton)
         //intent for sign up page
-        /*registerButton.setOnClickListener {
+        registerButton.setOnClickListener {
             startActivity(
                 Intent(
                     this@LoginActivity,
                     RegisterActivity::class.java
                 )
             )
-        }*/
+        }
         val loginButton = findViewById<Button>(R.id.signinButton)
         loginButton.setOnClickListener {
             val txt_Email = emailEditText.text.toString()
