@@ -54,7 +54,10 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.2")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.2")
+
+//    implementation("com.google.android.material:material:1.8.0")
     implementation("com.google.firebase:firebase-firestore-ktx:23.0.0")
+//    implementation("com.google.android.gms:play-services-tasks:19.8.0")
 
     implementation("androidx.room:room-runtime:2.6.1")
     implementation(libs.play.services.tasks)

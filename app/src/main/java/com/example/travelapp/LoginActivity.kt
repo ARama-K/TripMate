@@ -8,6 +8,7 @@ import android.util.Patterns
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.travelapp.fragment.AddTravelDiaryFragment
 //user1 isnt commited yet
 //import com.example.travelapp.User1.Use.setEmail
 import com.google.android.material.button.MaterialButton
