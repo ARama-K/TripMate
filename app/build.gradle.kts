@@ -57,6 +57,8 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore-ktx:23.0.0")
 
     implementation("androidx.room:room-runtime:2.6.1")
+    implementation(libs.play.services.tasks)
+    implementation(libs.firebase.auth.ktx)
     kapt("androidx.room:room-compiler:2.6.1")
 //    implementation(libs.firebase.firestore.ktx)
     implementation(platform("com.google.firebase:firebase-bom:33.1.1"))
