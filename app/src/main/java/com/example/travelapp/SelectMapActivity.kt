@@ -20,8 +20,6 @@ class SelectMapActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_map)
-        //Intent intent = getIntent();
-        //location = intent.getStringExtra("location");
         val preferences = getSharedPreferences("myPrefs", MODE_PRIVATE)
 
         location = preferences.getString("location", "")
