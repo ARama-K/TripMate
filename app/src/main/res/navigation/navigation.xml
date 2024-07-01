@@ -7,16 +7,16 @@
     <fragment
         android:id="@+id/nav_home_fragment"
         android:name="com.example.travelapp.fragment.HomeFragment"
-        android:label="WanderLogix" />
+        android:label="TripMate" />
     <fragment
         android:id="@+id/logixContentFragment"
         android:name="com.example.travelapp.fragment.LogixContentFragment"
         android:label="LogContent" />
-    <!--<fragment
-        android:id="@+id/add_travel_diary_fragment"
-        android:name="com.example.myapplication.fragment.AddTravelDiaryFragment"
-        android:label="AddTravelDiary" />
     <fragment
+        android:id="@+id/add_travel_diary_fragment"
+        android:name="com.example.travelapp.fragment.AddTravelDiaryFragment"
+        android:label="AddTravelDiary" />
+    <!--<fragment
         android:id="@+id/report_fragment"
         android:name="com.example.myapplication.fragment.ReportFragment"
         android:label="Report" />
