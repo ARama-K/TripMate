@@ -62,11 +62,16 @@ dependencies {
     implementation("androidx.room:room-runtime:2.6.1")
     implementation(libs.play.services.tasks)
     implementation(libs.firebase.auth.ktx)
+    implementation(libs.play.services.maps)
     kapt("androidx.room:room-compiler:2.6.1")
 //    implementation(libs.firebase.firestore.ktx)
     implementation(platform("com.google.firebase:firebase-bom:33.1.1"))
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.firebaseui:firebase-ui-auth:8.0.1")
+
+    implementation("com.google.android.gms:play-services-maps:19.0.0") // Google Maps SDK for Android
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")// ConstraintLayout
+    implementation("androidx.fragment:fragment:1.6.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

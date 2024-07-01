@@ -17,6 +17,7 @@ import android.widget.SeekBar.OnSeekBarChangeListener
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.travelapp.SelectMapActivity
 import com.example.travelapp.databinding.AddTravelDiaryFragmentBinding
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -126,10 +127,11 @@ class AddTravelDiaryFragment : Fragment() {
                 val editor = preferences.edit()
                 editor.putString("location", location)
                 editor.apply()
-//                val intent = Intent(
-//                    context,
-//                )
-//                startActivity(intent)
+                val intent = Intent(
+                    context,
+                    SelectMapActivity::class.java
+                )
+                startActivity(intent)
             }
         })
 
