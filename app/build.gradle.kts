@@ -73,6 +73,10 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")// ConstraintLayout
     implementation("androidx.fragment:fragment:1.6.0")
 
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation ("com.google.code.gson:gson:2.8.8")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
