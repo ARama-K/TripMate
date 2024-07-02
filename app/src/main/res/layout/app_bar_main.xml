@@ -4,18 +4,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context=".MainActivity">
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <!--android:theme="@style/Theme.MyApplication.AppBarOverlay"-->
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.TravelApp.AppBarOverlay">
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:title="TripMate" />
-            <!--app:popupTheme="@style/Theme.MyApplication.PopupOverlay" /-->
+            app:title="TripMate"
+            app:popupTheme="@style/Theme.TravelApp.PopupOverlay" />
     </com.google.android.material.appbar.AppBarLayout>
     <!--include layout="@layout/content_main" /Add contentmain-->
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
