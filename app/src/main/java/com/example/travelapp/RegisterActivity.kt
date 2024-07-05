@@ -6,16 +6,17 @@ import android.text.TextUtils
 import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.travelapp.LoginActivity
-import com.example.travelapp.R
 import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.auth.AuthResult
-import com.google.firebase.auth.FirebaseAuth
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.auth.FirebaseAuth
 
 class RegisterActivity : AppCompatActivity() {
     private var auth: FirebaseAuth? = null
+
+    // Test flags
+    var testToastMessage: String? = null
+    var isRegistrationSuccessful: Boolean? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,17 +33,28 @@ class RegisterActivity : AppCompatActivity() {
             val password_txt = passwordEditText.text.toString()
             val confirmPassword = confirmPasswordEditText.text.toString().trim()
 
-            if (TextUtils.isEmpty(email_txt) || TextUtils.isEmpty(password_txt)) {
-                toastMsg("Empty Username or Password")
-            } else if (password_txt.length < 6) {
-                toastMsg("Password must be at least 6 characters.")
-            } else if (!Patterns.EMAIL_ADDRESS.matcher(email_txt).matches()) {
-                toastMsg("Invalid email address.")
-            } else if (!password_txt.matches("(.*[A-Z].*)".toRegex())) {
-                toastMsg("Password must contain at least one capital letter.")
-            } else if (password_txt != confirmPassword) {
-                toastMsg("Passwords must match.")
-            } else {
+            handleRegistration(email_txt, password_txt, confirmPassword)
+        }
+    }
+
+    fun handleRegistration(email_txt: String, password_txt: String, confirmPassword: String) {
+        when {
+            TextUtils.isEmpty(email_txt) || TextUtils.isEmpty(password_txt) -> {
+                setToastMsg("Empty Username or Password")
+            }
+            password_txt.length < 6 -> {
+                setToastMsg("Password must be at least 6 characters.")
+            }
+            !Patterns.EMAIL_ADDRESS.matcher(email_txt).matches() -> {
+                setToastMsg("Invalid email address.")
+            }
+            !password_txt.matches("(.*[A-Z].*)".toRegex()) -> {
+                setToastMsg("Password must contain at least one capital letter.")
+            }
+            password_txt != confirmPassword -> {
+                setToastMsg("Passwords must match.")
+            }
+            else -> {
                 registerUser(email_txt, password_txt)
             }
         }
@@ -52,15 +64,18 @@ class RegisterActivity : AppCompatActivity() {
         auth?.createUserWithEmailAndPassword(email_txt, password_txt)
             ?.addOnCompleteListener(this, OnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    toastMsg("Registration Successful")
+                    setToastMsg("Registration Successful")
+                    isRegistrationSuccessful = true
                     startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
                 } else {
-                    toastMsg("Registration Unsuccessful")
+                    setToastMsg("Registration Unsuccessful")
+                    isRegistrationSuccessful = false
                 }
             })
     }
 
-    private fun toastMsg(message: String) {
+    private fun setToastMsg(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        testToastMessage = message // Set the test flag for toast message
     }
 }
