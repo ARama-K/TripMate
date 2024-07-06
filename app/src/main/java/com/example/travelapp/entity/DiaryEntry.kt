@@ -3,7 +3,6 @@ package com.example.travelapp.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.google.firebase.firestore.Exclude
 
 @Entity(tableName = "diary_entries")
 class DiaryEntry {
@@ -31,8 +30,7 @@ class DiaryEntry {
     @ColumnInfo(name = "rating")
     var rating: Int = 0
 
-    @get:Exclude
-    @set:Exclude
+
     @ColumnInfo(name = "updated")
     var updated: Boolean = false
 
@@ -55,13 +53,4 @@ class DiaryEntry {
         this.updated = false
     }
 
-//    @Exclude
-//    fun getId(): Int {
-//        return id!!
-//    }
-//
-//    @Exclude
-//    fun setId(id: Int) {
-//        this.id = id
-//    }
 }

@@ -35,7 +35,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         Use.setEmail("")
+        super.onDestroy()
+        //Use.setEmail("")
     }
 }

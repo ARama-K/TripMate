@@ -9,7 +9,7 @@ import androidx.room.Query
 import androidx.room.Update
 import com.example.travelapp.entity.DiaryEntry
 
-@Dao
+@Dao    
 interface DiaryDao {
     @get:Query("SELECT * FROM diary_entries")
     val all: LiveData<List<DiaryEntry>>
