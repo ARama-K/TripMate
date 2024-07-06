@@ -2,30 +2,33 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="60dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="60dp"
+    android:background="@color/bg">
 
     <EditText
         android:id="@+id/description_edittext"
         android:layout_width="394dp"
         android:layout_height="250dp"
         android:layout_below="@id/title_edittext"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="5dp"
         android:fontFamily="@font/antic"
         android:hint="Enter description here"
         android:inputType="textMultiLine"
         android:maxHeight="300dp"
         android:scrollbars="vertical"
-        android:textSize="17sp" />
+        android:textSize="17sp"
+        android:paddingLeft="12dp"
+        android:background="@drawable/round_text"/>
 
     <TextView
         android:id="@+id/weather_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/satisfaction_slider"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="25dp"
         android:fontFamily="@font/antic"
         android:text="Weather:"
         android:textSize="17sp" />
@@ -82,8 +85,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/expense_edittext"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="11dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/antic"
         android:text="Satisfaction:"
         android:textSize="17sp" />
@@ -93,7 +96,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/location_textview"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="35dp"
         android:fontFamily="@font/antic"
         android:text="Expense:"
@@ -102,72 +105,85 @@
     <EditText
         android:id="@+id/expense_edittext"
         android:layout_width="276dp"
-        android:layout_height="48dp"
+        android:layout_height="40dp"
         android:layout_below="@id/location_edittext"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="10dp"
         android:layout_toRightOf="@id/expense_textview"
         android:fontFamily="@font/antic"
         android:hint="Enter Expense here"
+        android:paddingLeft="12dp"
         android:inputType="numberDecimal"
-        android:textSize="17sp" />
+        android:textSize="17sp"
+        android:background="@drawable/round_text"/>
+    />
 
     <EditText
         android:id="@+id/location_edittext"
-        android:layout_width="183dp"
-        android:layout_height="66dp"
+        android:layout_width="190dp"
+        android:layout_height="40dp"
         android:layout_below="@id/location_textview"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="-46dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="-29dp"
         android:layout_marginRight="10dp"
         android:layout_toRightOf="@id/location_textview"
         android:fontFamily="@font/antic"
         android:hint="Enter location here"
         android:inputType="text"
-        android:textSize="17sp" />
+        android:paddingLeft="12dp"
+        android:textSize="17sp"
+        android:background="@drawable/round_text"/>
+    />
 
     <TextView
         android:id="@+id/location_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/description_edittext"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="17dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/antic"
         android:text="Location:"
         android:textSize="17sp" />
 
     <Button
         android:id="@+id/mapbutton"
-        android:layout_width="wrap_content"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/location_textview"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="-32dp"
-        android:layout_marginRight="10dp"
-        android:layout_toRightOf="@id/location_edittext"
-        android:text="Map" />
+        android:layout_marginLeft="285dp"
+        android:layout_marginTop="-34dp"
+        android:background="@drawable/round_button"
+        android:fontFamily="@font/antic"
+        android:text="Map"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:backgroundTint="@color/button" />
 
     <EditText
         android:id="@+id/title_edittext"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="15dp"
         android:layout_marginRight="10dp"
         android:fontFamily="@font/antic"
         android:hint="Enter title here"
         android:inputType="text"
-        android:textSize="17sp" />
+        android:textSize="17sp"
+        android:paddingLeft="12dp"
+        android:background="@drawable/round_text"/>
+    />
 
     <DatePicker
         android:id="@+id/date_picker"
         android:layout_width="380dp"
         android:layout_height="100dp"
         android:layout_below="@id/weather_radiogroup"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="23dp"
         android:calendarViewShown="false"
         android:datePickerMode="spinner" />
 
@@ -179,42 +195,39 @@
         android:layout_alignStart="@id/satisfaction_slider"
         android:layout_alignLeft="@id/satisfaction_slider"
         android:layout_alignBottom="@id/satisfaction_slider"
-        android:layout_marginBottom="1dp"
+        android:layout_marginLeft="-6dp"
         android:text="5"
         android:textSize="15sp" />
 
 
     <Button
         android:id="@+id/save_button"
-        android:layout_width="wrap_content"
+        android:layout_width="115dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="28dp"
-        android:onClick="onSaveButtonClicked"
-        android:text="Save" />
+        android:layout_marginStart="275dp"
+        android:layout_marginTop="700dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/round_button"
+        android:fontFamily="@font/antic"
+        android:text="Save"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:backgroundTint="@color/button" />
 
     <Button
         android:id="@+id/clear_button"
-        android:layout_width="wrap_content"
+        android:layout_width="115dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="28dp"
-        android:onClick="onClearButtonClicked"
-        android:text="Cancel" />
-
-    <TextView
-        android:id="@+id/textView_read"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="-5dp"
-        android:layout_marginBottom="2dp"
-        android:background="@color/white" />
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="700dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/round_button"
+        android:fontFamily="@font/antic"
+        android:text="Clear"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:backgroundTint="@color/button" />
 
 </RelativeLayout>

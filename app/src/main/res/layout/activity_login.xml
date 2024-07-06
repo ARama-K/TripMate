@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity"
-    >
+    android:background="#F8F8DF"
+    tools:context=".LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,24 +16,18 @@
         android:padding="24dp"
         android:paddingTop="16dp">
 
-        <ImageView
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="48dp"
-            android:layout_marginBottom="16dp"
-            />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="132dp"
+            android:layout_marginTop="170dp"
+            android:layout_marginBottom="80dp"
             android:fontFamily="casual"
             android:text="TripMate"
             android:textAllCaps="false"
-            android:textColor="@color/black"
-            android:textSize="24sp" />
+            android:textColor="#FB6A34"
+            android:textSize="58sp"
+            android:textStyle="bold" />
 
         <!-- Snippet from "Add text fields" section goes here. -->
         <com.google.android.material.textfield.TextInputLayout
@@ -48,7 +42,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
-                android:maxLines="1" />
+                android:fontFamily="@font/antic"
+                android:background="@drawable/round_text"
+                android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -64,49 +60,42 @@
                 android:id="@+id/passwordEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                />
+                android:fontFamily="@font/antic"
+                android:background="@drawable/round_text"
+                android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
         <!-- Snippet from "Add buttons" section goes here. -->
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/signinButton"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/round_button"
+            android:fontFamily="@font/antic"
+            android:text="Login"
+            android:textAllCaps="false"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/button" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/signinButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginEnd="56dp"
-                android:layout_marginRight="56dp"
-                android:text="Login"
-                android:textAllCaps="false" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/signupButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="74dp"
-                android:layout_marginRight="74dp"
-                android:layout_toStartOf="@id/signinButton"
-                android:layout_toLeftOf="@id/signinButton"
-                android:text="Sign Up"
-                android:textAllCaps="false" />
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginRight="120dp"
-                android:layout_toLeftOf="@+id/signupButton"
-                app:tint="#00A0E9" />
-        </RelativeLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/signupButton"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/round_button"
+            android:fontFamily="@font/antic"
+            android:text="Sign Up"
+            android:textAllCaps="false"
+            android:textColor="#333333"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:backgroundTintMode="screen" />
 
     </LinearLayout>
-
 
 
 </ScrollView>
