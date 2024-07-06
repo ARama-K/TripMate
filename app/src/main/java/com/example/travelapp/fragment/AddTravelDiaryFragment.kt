@@ -187,6 +187,16 @@ class AddTravelDiaryFragment : Fragment() {
         )
         diaryViewModel!!.insert(newDiary)
         toastMsg("Add successful")
+
+        titleEditText!!.setText("")
+        descriptionEditText!!.setText("")
+        locationEditText!!.setText("")
+        expenseEditText!!.setText("")
+        satisfactionSeekBar!!.progress = 5
+        satisfactionScoreTextView!!.text = "5"
+        val sunnyRadioButton: RadioButton = binding!!.sunnyRadiobutton
+        weatherRadioGroup!!.check(sunnyRadioButton.id)
+
     }
 
     private fun toastMsg(msg: String) {
