@@ -32,18 +32,18 @@ class HomeRecyclerViewAdapter(
             val diary = diaryViewModel.findDiarybyId(idDiary)
             if (diary != null) {
                 // Set the image based on the diary ID modulo 10
-//                when (diary.id!! % 10) {
-//                    0 -> viewHolder.binding.image.setImageResource(R.drawable.i1)
-//                    1 -> viewHolder.binding.image.setImageResource(R.drawable.i2)
-//                    2 -> viewHolder.binding.image.setImageResource(R.drawable.i3)
-//                    3 -> viewHolder.binding.image.setImageResource(R.drawable.i4)
-//                    4 -> viewHolder.binding.image.setImageResource(R.drawable.i5)
-//                    5 -> viewHolder.binding.image.setImageResource(R.drawable.i6)
-//                    6 -> viewHolder.binding.image.setImageResource(R.drawable.i7)
-//                    7 -> viewHolder.binding.image.setImageResource(R.drawable.i8)
-//                    8 -> viewHolder.binding.image.setImageResource(R.drawable.i9)
-//                    9 -> viewHolder.binding.image.setImageResource(R.drawable.i10)
-//                }
+                when (diary.id!! % 10) {
+                    0 -> viewHolder.binding.image.setImageResource(R.drawable.i1)
+                    1 -> viewHolder.binding.image.setImageResource(R.drawable.i2)
+                    2 -> viewHolder.binding.image.setImageResource(R.drawable.i3)
+                    3 -> viewHolder.binding.image.setImageResource(R.drawable.i4)
+                    4 -> viewHolder.binding.image.setImageResource(R.drawable.i5)
+                    5 -> viewHolder.binding.image.setImageResource(R.drawable.i6)
+                    6 -> viewHolder.binding.image.setImageResource(R.drawable.i7)
+                    7 -> viewHolder.binding.image.setImageResource(R.drawable.i8)
+                    8 -> viewHolder.binding.image.setImageResource(R.drawable.i9)
+                    9 -> viewHolder.binding.image.setImageResource(R.drawable.i10)
+                }
 
                 // Updating UI with diary details
                 viewHolder.binding.logixTiltle.text = diary.title

@@ -63,6 +63,8 @@ dependencies {
     implementation(libs.play.services.tasks)
     implementation(libs.firebase.auth.ktx)
     implementation(libs.play.services.maps)
+    implementation(libs.androidx.fragment.testing)
+    implementation(libs.androidx.junit.ktx)
     kapt("androidx.room:room-compiler:2.6.1")
 //    implementation(libs.firebase.firestore.ktx)
     implementation(platform("com.google.firebase:firebase-bom:33.1.1"))

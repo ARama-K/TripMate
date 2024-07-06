@@ -8,15 +8,16 @@
     <fragment
         android:id="@+id/nav_home_fragment"
         android:name="com.example.travelapp.fragment.HomeFragment"
-        android:label="TripMate" />
+        android:label="TripMate"/>
     <fragment
         android:id="@+id/logixContentFragment"
         android:name="com.example.travelapp.fragment.LogixContentFragment"
-        android:label="LogContent" />
+        android:label="LogContent"/>
     <fragment
         android:id="@+id/add_travel_diary_fragment"
         android:name="com.example.travelapp.fragment.AddTravelDiaryFragment"
-        android:label="AddTravelDiary" />
+        android:label="AddTravelDiary"
+        tools:layout="@layout/add_travel_diary_fragment"/>
     <fragment
         android:id="@+id/search_fragment"
         android:name="com.example.travelapp.fragment.SearchFragment"
@@ -25,18 +26,6 @@
     <fragment
         android:id="@+id/bar_fragment"
         android:name="com.example.travelapp.fragment.BarFragment"
-        android:label="Graph" />
-    <!--<fragment
-        android:id="@+id/show_map_fragment"
-        android:name="com.example.myapplication.fragment.ShowMapFragment"
-        android:label="Map" />
-
-    <fragment
-        android:id="@+id/work_fragment"
-        android:name="com.example.myapplication.fragment.WorkFragment"
-        android:label="Work" />
-    <fragment
-        android:id="@+id/compass_fragment"
-        android:name="com.example.myapplication.fragment.CompassFragment"
-        android:label="Compass" />!-->
+        android:label="Graph"
+        tools:layout="@layout/bar_fragment"/>
 </navigation>

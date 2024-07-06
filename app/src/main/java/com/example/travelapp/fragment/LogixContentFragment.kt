@@ -48,27 +48,27 @@ class LogixContentFragment : Fragment {
         println(this.id)
         val id = id!!.toInt()
         val diary = diaryViewModel!!.findDiarybyId(id)
-//        if (id % 10 == 0) {
-//            binding!!.image.setImageResource(R.drawable.i1)
-//        } else if (id % 10 == 1) {
-//            binding!!.image.setImageResource(R.drawable.i2)
-//        } else if (id % 10 == 2) {
-//            binding!!.image.setImageResource(R.drawable.i3)
-//        } else if (id % 10 == 3) {
-//            binding!!.image.setImageResource(R.drawable.i4)
-//        } else if (id % 10 == 4) {
-//            binding!!.image.setImageResource(R.drawable.i5)
-//        } else if (id % 10 == 5) {
-//            binding!!.image.setImageResource(R.drawable.i6)
-//        } else if (id % 10 == 6) {
-//            binding!!.image.setImageResource(R.drawable.i7)
-//        } else if (id % 10 == 7) {
-//            binding!!.image.setImageResource(R.drawable.i8)
-//        } else if (id % 10 == 8) {
-//            binding!!.image.setImageResource(R.drawable.i9)
-//        } else if (id % 10 == 9) {
-//            binding!!.image.setImageResource(R.drawable.i10)
-//        }
+        if (id % 10 == 0) {
+            binding!!.image.setImageResource(R.drawable.i1)
+        } else if (id % 10 == 1) {
+            binding!!.image.setImageResource(R.drawable.i2)
+        } else if (id % 10 == 2) {
+            binding!!.image.setImageResource(R.drawable.i3)
+        } else if (id % 10 == 3) {
+            binding!!.image.setImageResource(R.drawable.i4)
+        } else if (id % 10 == 4) {
+            binding!!.image.setImageResource(R.drawable.i5)
+        } else if (id % 10 == 5) {
+            binding!!.image.setImageResource(R.drawable.i6)
+        } else if (id % 10 == 6) {
+            binding!!.image.setImageResource(R.drawable.i7)
+        } else if (id % 10 == 7) {
+            binding!!.image.setImageResource(R.drawable.i8)
+        } else if (id % 10 == 8) {
+            binding!!.image.setImageResource(R.drawable.i9)
+        } else if (id % 10 == 9) {
+            binding!!.image.setImageResource(R.drawable.i10)
+        }
 
         binding!!.title.text = diary!!.title
         binding!!.date.text = "Date: " + diary.date

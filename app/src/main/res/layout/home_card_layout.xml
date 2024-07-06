@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
+    android:background="#D5C65F"
+    android:backgroundTint="#555E4D"
     android:clickable="true"
     android:foreground="?selectableItemBackground"
     card_view:cardCornerRadius="12dp"
@@ -14,12 +16,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/round_card"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/image"
             android:layout_width="wrap_content"
-            android:layout_height="200dp"></ImageView>
+            android:layout_height="200dp"
+            android:layout_marginTop="10dp"></ImageView>
 
         <TextView
             android:id="@+id/logix_tiltle"
@@ -27,16 +31,17 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="6dp"
             android:layout_marginTop="3dp"
-            android:fontFamily="monospace"
-            android:textSize="16sp"
+            android:fontFamily="@font/antic"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/logix_introduce"
             android:layout_width="match_parent"
-            android:layout_height="22dp"
+            android:layout_height="20dp"
             android:layout_marginLeft="6dp"
             android:layout_marginTop="5dp"
-            android:fontFamily="monospace" />
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/antic" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

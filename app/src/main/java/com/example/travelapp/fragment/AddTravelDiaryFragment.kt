@@ -2,43 +2,46 @@ package com.example.travelapp.fragment
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.DatePicker
-import android.widget.EditText
-import android.widget.RadioButton
-import android.widget.RadioGroup
-import android.widget.SeekBar
-import android.widget.SeekBar.OnSeekBarChangeListener
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.travelapp.R
 import com.example.travelapp.SelectMapActivity
 import com.example.travelapp.databinding.AddTravelDiaryFragmentBinding
 import com.example.travelapp.entity.DiaryEntry
 import com.example.travelapp.viewmodel.DiaryViewModel
 import java.text.SimpleDateFormat
-import java.util.Calendar
+import java.util.*
 
 class AddTravelDiaryFragment : Fragment() {
-    private var titleEditText: EditText? = null
-    private var descriptionEditText: EditText? = null
-    private var locationEditText: EditText? = null
-    private var expenseEditText: EditText? = null
-    private var datePicker: DatePicker? = null
+    var titleEditText: EditText? = null
+    var descriptionEditText: EditText? = null
+    var locationEditText: EditText? = null
+    var expenseEditText: EditText? = null
+    var datePicker: DatePicker? = null
 
-    private var satisfactionSeekBar: SeekBar? = null
+    var satisfactionSeekBar: SeekBar? = null
     private var satisfactionScoreTextView: TextView? = null
-    private var weatherRadioGroup: RadioGroup? = null
+    var weatherRadioGroup: RadioGroup? = null
     private var binding: AddTravelDiaryFragmentBinding? = null
-    private var diaryViewModel: DiaryViewModel? = null
+    var diaryViewModel: DiaryViewModel? = null
 
+    // Test hooks
+    var isSaveButtonClicked: Boolean = false
+    var isMapButtonClicked: Boolean = false
+    var isClearButtonClicked: Boolean = false
+    var isDatePickerUsed: Boolean = false // Added flag for date picker usage
+    var isWeatherRadioButtonChecked: Boolean = false // Added flag for weather radio button check
+
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -58,7 +61,7 @@ class AddTravelDiaryFragment : Fragment() {
         satisfactionSeekBar!!.max = 10
         satisfactionSeekBar!!.progress = 5
         satisfactionScoreTextView!!.text = "5"
-        satisfactionSeekBar!!.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
+        satisfactionSeekBar!!.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 satisfactionScoreTextView!!.text = progress.toString()
             }
@@ -72,67 +75,8 @@ class AddTravelDiaryFragment : Fragment() {
 
         val saveButton: Button = binding!!.saveButton
         saveButton.setOnClickListener {
-            if (TextUtils.isEmpty(titleEditText!!.text)) {
-                titleEditText!!.error = "Title is required."
-                val msg = "Title is required"
-                toastMsg(msg)
-                return@setOnClickListener
-            }
-
-            if (TextUtils.isEmpty(expenseEditText!!.text)) {
-                expenseEditText!!.error = "Expense is required."
-                val msg = "Expense is required"
-                toastMsg(msg)
-                return@setOnClickListener
-            }
-
-            if (TextUtils.isEmpty(descriptionEditText!!.text)) {
-                descriptionEditText!!.error = "Description is required."
-                val msg = "Description is required."
-                toastMsg(msg)
-                return@setOnClickListener
-            }
-
-            if (TextUtils.isEmpty(locationEditText!!.text)) {
-                locationEditText!!.error = "Location is required."
-                val msg = "Location is required."
-                toastMsg(msg)
-                return@setOnClickListener
-            }
-
-            if (weatherRadioGroup!!.checkedRadioButtonId == -1) {
-                Toast.makeText(context, "Please select weather.", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-
-            val title = titleEditText!!.text.toString().trim { it <= ' ' }
-            val description = descriptionEditText!!.text.toString().trim { it <= ' ' }
-            val location = locationEditText!!.text.toString().trim { it <= ' ' }
-            val expense = expenseEditText!!.text.toString().toInt()
-            val satisfaction = satisfactionSeekBar!!.progress
-            val weatherId = weatherRadioGroup!!.checkedRadioButtonId
-            val weatherRadioButton = view.findViewById<RadioButton>(weatherId)
-            val weather = weatherRadioButton.text.toString()
-            val day = datePicker!!.dayOfMonth
-            val month = datePicker!!.month
-            val year = datePicker!!.year
-            val calendar = Calendar.getInstance()
-            calendar.set(year, month, day)
-            val date = calendar.time
-            val sdf = SimpleDateFormat("MM/dd/yyyy")
-            val dateString = sdf.format(date)
-
-            val newDiary = DiaryEntry(
-                title = title,
-                date = dateString,
-                description = description,
-                weather = weather,
-                location = location,
-                fee = expense,
-                rating = satisfaction
-            )
-            diaryViewModel!!.insert(newDiary)
-            toastMsg("Add successful")
+            onSaveButtonClick()
+            isSaveButtonClicked = true
         }
 
         binding!!.mapbutton.setOnClickListener {
@@ -147,6 +91,7 @@ class AddTravelDiaryFragment : Fragment() {
                 editor.apply()
                 val intent = Intent(context, SelectMapActivity::class.java)
                 startActivity(intent)
+                isMapButtonClicked = true
             }
         }
 
@@ -159,6 +104,7 @@ class AddTravelDiaryFragment : Fragment() {
             satisfactionScoreTextView!!.text = "5"
             val sunnyRadioButton: RadioButton = binding!!.sunnyRadiobutton
             weatherRadioGroup!!.check(sunnyRadioButton.id)
+            isClearButtonClicked = true
         }
 
         diaryViewModel!!.allDiary.observe(viewLifecycleOwner, Observer { customers ->
@@ -170,7 +116,77 @@ class AddTravelDiaryFragment : Fragment() {
             }
         })
 
+        // Add a listener for the date picker
+        datePicker!!.setOnDateChangedListener { _, _, _, _ ->
+            isDatePickerUsed = true
+        }
+
+        // Add a listener for the radio buttons to track weather selection
+        weatherRadioGroup!!.setOnCheckedChangeListener { _, _ ->
+            isWeatherRadioButtonChecked = true
+        }
+
         return view
+    }
+
+    fun onSaveButtonClick() {
+        if (TextUtils.isEmpty(titleEditText!!.text)) {
+            titleEditText!!.error = "Title is required."
+            toastMsg("Title is required")
+            return
+        }
+
+        if (TextUtils.isEmpty(expenseEditText!!.text)) {
+            expenseEditText!!.error = "Expense is required."
+            toastMsg("Expense is required.")
+            return
+        }
+
+        if (TextUtils.isEmpty(descriptionEditText!!.text)) {
+            descriptionEditText!!.error = "Description is required."
+            toastMsg("Description is required.")
+            return
+        }
+
+        if (TextUtils.isEmpty(locationEditText!!.text)) {
+            locationEditText!!.error = "Location is required."
+            toastMsg("Location is required.")
+            return
+        }
+
+        if (weatherRadioGroup!!.checkedRadioButtonId == -1) {
+            Toast.makeText(context, "Please select weather.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val title = titleEditText!!.text.toString().trim()
+        val description = descriptionEditText!!.text.toString().trim()
+        val location = locationEditText!!.text.toString().trim()
+        val expense = expenseEditText!!.text.toString().toInt()
+        val satisfaction = satisfactionSeekBar!!.progress
+        val weatherId = weatherRadioGroup!!.checkedRadioButtonId
+        val weatherRadioButton = view?.findViewById<RadioButton>(weatherId)
+        val weather = weatherRadioButton?.text.toString()
+        val day = datePicker!!.dayOfMonth
+        val month = datePicker!!.month
+        val year = datePicker!!.year
+        val calendar = Calendar.getInstance()
+        calendar.set(year, month, day)
+        val date = calendar.time
+        val sdf = SimpleDateFormat("MM/dd/yyyy")
+        val dateString = sdf.format(date)
+
+        val newDiary = DiaryEntry(
+            title = title,
+            date = dateString,
+            description = description,
+            weather = weather,
+            location = location,
+            fee = expense,
+            rating = satisfaction
+        )
+        diaryViewModel!!.insert(newDiary)
+        toastMsg("Add successful")
     }
 
     private fun toastMsg(msg: String) {

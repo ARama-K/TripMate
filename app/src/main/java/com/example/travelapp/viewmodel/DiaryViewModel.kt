@@ -12,7 +12,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 class DiaryViewModel(application: Application) : AndroidViewModel(application) {
     private val firedb = FirebaseFirestore.getInstance()
     private val dRepository = DiaryRepository(application)
-    val allDiary: LiveData<List<DiaryEntry>> = dRepository.allDiary
+    var allDiary: LiveData<List<DiaryEntry>> = dRepository.allDiary
 
     fun insert(diaryEntry: DiaryEntry) {
         val id = dRepository.insert(diaryEntry)
