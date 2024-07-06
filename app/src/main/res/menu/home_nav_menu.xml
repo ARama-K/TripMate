@@ -4,4 +4,5 @@
     <item android:id="@+id/add_travel_diary_fragment" android:title="Add Travel Diary"/>
     <item android:id="@+id/search_fragment" android:title="Search" />
     <item android:id="@+id/bar_fragment" android:title="Graph" />
+    <item android:id="@+id/mapActivity" android:title="Navigation" />
 </menu>

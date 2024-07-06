@@ -28,4 +28,9 @@
         android:name="com.example.travelapp.fragment.BarFragment"
         android:label="Graph"
         tools:layout="@layout/bar_fragment"/>
+    <activity
+        android:id="@+id/mapActivity"
+        android:name="com.example.travelapp.MapActivity"
+        android:label="Map Activity"
+        tools:layout="@layout/activity_map" />
 </navigation>
