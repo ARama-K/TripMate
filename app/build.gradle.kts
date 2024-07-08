@@ -97,6 +97,8 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-contrib:3.4.0")
     androidTestImplementation("androidx.test.espresso:espresso-intents:3.4.0")
 
+    //Hamcrest
+    androidTestImplementation("org.hamcrest:hamcrest-library:1.3")
 
     // Firebase Auth dependency
     implementation("com.google.firebase:firebase-auth:21.0.8")

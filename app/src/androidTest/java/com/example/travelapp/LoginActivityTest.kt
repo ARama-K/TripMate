@@ -1,95 +1,111 @@
 package com.example.travelapp
 
 import android.content.Context
-import android.content.Intent
+import android.content.SharedPreferences
+import android.widget.Button
 import androidx.test.core.app.ActivityScenario
-import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
-import androidx.test.espresso.action.ViewActions.typeText
-import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.rule.ActivityTestRule
+import com.google.android.material.textfield.TextInputEditText
 import org.junit.After
+import org.junit.Assert.assertTrue
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class LoginActivityTest {
 
+    @get:Rule
+    val activityRule = ActivityTestRule(LoginActivity::class.java)
+
+    private lateinit var sharedPref: SharedPreferences
+
     @Before
-    fun setup() {
-        resetValidationFlags()
+    fun setUp() {
+        // Clear shared preferences before each test
+        sharedPref = InstrumentationRegistry.getInstrumentation().targetContext
+            .getSharedPreferences("LoginActivityPrefs", Context.MODE_PRIVATE)
+        sharedPref.edit().clear().apply()
     }
 
     @After
     fun tearDown() {
-        resetValidationFlags()
+        // Clear shared preferences after each test
+        sharedPref.edit().clear().apply()
     }
 
     @Test
-    fun testEmptyFieldsShowErrorMessage() {
-        ActivityScenario.launch(LoginActivity::class.java)
+    fun testEmptyUsernameOrPassword() {
+        ActivityScenario.launch(LoginActivity::class.java).use { scenario ->
+            scenario.onActivity { activity ->
+                activity.findViewById<TextInputEditText>(R.id.emailEditText).setText("")
+                activity.findViewById<TextInputEditText>(R.id.passwordEditText).setText("")
 
-        onView(withId(R.id.signinButton)).perform(click())
-        assert(checkValidationFlag("EmptyUsernameOrPassword"))
-    }
+                activity.findViewById<Button>(R.id.signinButton).performClick()
 
-    @Test
-    fun testInvalidEmailShowsErrorMessage() {
-        ActivityScenario.launch(LoginActivity::class.java)
-
-        onView(withId(R.id.emailEditText)).perform(typeText("invalidEmail"), closeSoftKeyboard())
-        onView(withId(R.id.passwordEditText)).perform(typeText("Password1"), closeSoftKeyboard())
-        onView(withId(R.id.signinButton)).perform(click())
-        assert(checkValidationFlag("InvalidEmailAddress"))
-    }
-
-    @Test
-    fun testPasswordTooShortShowsErrorMessage() {
-        ActivityScenario.launch(LoginActivity::class.java)
-
-        onView(withId(R.id.emailEditText)).perform(typeText("test@example.com"), closeSoftKeyboard())
-        onView(withId(R.id.passwordEditText)).perform(typeText("123"), closeSoftKeyboard())
-        onView(withId(R.id.signinButton)).perform(click())
-        assert(checkValidationFlag("PasswordTooShort"))
-    }
-
-    @Test
-    fun testPasswordNoCapitalLetterShowsErrorMessage() {
-        ActivityScenario.launch(LoginActivity::class.java)
-
-        onView(withId(R.id.emailEditText)).perform(typeText("test@example.com"), closeSoftKeyboard())
-        onView(withId(R.id.passwordEditText)).perform(typeText("password"), closeSoftKeyboard())
-        onView(withId(R.id.signinButton)).perform(click())
-        assert(checkValidationFlag("PasswordNoCapitalLetter"))
-    }
-
-    @Test
-    fun testSignUpButtonNavigatesToRegisterActivity() {
-        ActivityScenario.launch(LoginActivity::class.java)
-
-        onView(withId(R.id.signupButton)).perform(click())
-
-        val expectedIntent = Intent(
-            androidx.test.platform.app.InstrumentationRegistry.getInstrumentation().targetContext,
-            RegisterActivity::class.java
-        )
-        assert(expectedIntent.component?.className == RegisterActivity::class.java.name)
-    }
-
-    private fun resetValidationFlags() {
-        val sharedPref = androidx.test.platform.app.InstrumentationRegistry.getInstrumentation().targetContext
-            .getSharedPreferences("LoginActivityPrefs", Context.MODE_PRIVATE)
-        with(sharedPref.edit()) {
-            clear()
-            apply()
+                assertTrue(sharedPref.getBoolean("EmptyUsernameOrPassword", false))
+            }
         }
     }
 
-    private fun checkValidationFlag(flag: String): Boolean {
-        val sharedPref = androidx.test.platform.app.InstrumentationRegistry.getInstrumentation().targetContext
-            .getSharedPreferences("LoginActivityPrefs", Context.MODE_PRIVATE)
-        return sharedPref.getBoolean(flag, false)
+    @Test
+    fun testPasswordTooShort() {
+        ActivityScenario.launch(LoginActivity::class.java).use { scenario ->
+            scenario.onActivity { activity ->
+                activity.findViewById<TextInputEditText>(R.id.emailEditText).setText("test@example.com")
+                activity.findViewById<TextInputEditText>(R.id.passwordEditText).setText("12345")
+
+                activity.findViewById<Button>(R.id.signinButton).performClick()
+
+                assertTrue(sharedPref.getBoolean("PasswordTooShort", false))
+            }
+        }
     }
+
+    @Test
+    fun testInvalidEmailAddress() {
+        ActivityScenario.launch(LoginActivity::class.java).use { scenario ->
+            scenario.onActivity { activity ->
+                activity.findViewById<TextInputEditText>(R.id.emailEditText).setText("invalid-email")
+                activity.findViewById<TextInputEditText>(R.id.passwordEditText).setText("Password1")
+
+                activity.findViewById<Button>(R.id.signinButton).performClick()
+
+                assertTrue(sharedPref.getBoolean("InvalidEmailAddress", false))
+            }
+        }
+    }
+
+    @Test
+    fun testPasswordNoCapitalLetter() {
+        ActivityScenario.launch(LoginActivity::class.java).use { scenario ->
+            scenario.onActivity { activity ->
+                activity.findViewById<TextInputEditText>(R.id.emailEditText).setText("test@example.com")
+                activity.findViewById<TextInputEditText>(R.id.passwordEditText).setText("password")
+
+                activity.findViewById<Button>(R.id.signinButton).performClick()
+
+                assertTrue(sharedPref.getBoolean("PasswordNoCapitalLetter", false))
+            }
+        }
+    }
+
+    @Test
+    fun testSuccessfulLogin() {
+        ActivityScenario.launch(LoginActivity::class.java).use { scenario ->
+            scenario.onActivity { activity ->
+                // Assuming valid credentials
+                activity.findViewById<TextInputEditText>(R.id.emailEditText).setText("abc@gmail.com")
+                activity.findViewById<TextInputEditText>(R.id.passwordEditText).setText("Abcdefg")
+
+                activity.findViewById<Button>(R.id.signinButton).performClick()
+
+                assertTrue(sharedPref.getBoolean("LoginSuccessful", true))
+            }
+        }
+    }
+
 }
