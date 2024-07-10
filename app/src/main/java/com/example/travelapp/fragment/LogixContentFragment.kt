@@ -71,9 +71,9 @@ class LogixContentFragment : Fragment {
         }
 
         binding!!.title.text = diary!!.title
-        binding!!.date.text = "Date: " + diary.date
-        binding!!.fee.text = "Fee: " + diary.fee.toString()
-        binding!!.score.text = "Rating: " + diary.rating.toString()
+        binding!!.date.text = diary.date
+        binding!!.fee.text = diary.fee.toString()
+        binding!!.score.text = diary.rating.toString()
         binding!!.content.text = diary.description
         return view
     }

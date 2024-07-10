@@ -12,7 +12,7 @@
     <fragment
         android:id="@+id/logixContentFragment"
         android:name="com.example.travelapp.fragment.LogixContentFragment"
-        android:label="LogContent"/>
+        android:label="Travel Dairy"/>
     <fragment
         android:id="@+id/add_travel_diary_fragment"
         android:name="com.example.travelapp.fragment.AddTravelDiaryFragment"
