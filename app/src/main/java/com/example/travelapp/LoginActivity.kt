@@ -30,7 +30,6 @@ class LoginActivity : AppCompatActivity() {
         registerButton.setOnClickListener {
             startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
         }
-
         val loginButton = findViewById<Button>(R.id.signinButton)
         loginButton.setOnClickListener {
             val txtEmail = emailEditText.text.toString()

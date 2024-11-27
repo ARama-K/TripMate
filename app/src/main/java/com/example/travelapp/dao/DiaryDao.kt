@@ -50,3 +50,4 @@ interface DiaryDao {
     @Query("SELECT updated FROM diary_entries WHERE id = :diaryId")
     fun getUpdated(diaryId: Int): Boolean
 }
+

@@ -117,7 +117,6 @@
         android:inputType="numberDecimal"
         android:textSize="17sp"
         android:background="@drawable/round_text"/>
-    />
 
     <EditText
         android:id="@+id/location_edittext"
@@ -175,8 +174,6 @@
         android:textSize="17sp"
         android:paddingLeft="12dp"
         android:background="@drawable/round_text"/>
-    />
-
     <DatePicker
         android:id="@+id/date_picker"
         android:layout_width="380dp"
@@ -205,7 +202,7 @@
         android:layout_width="115dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="275dp"
-        android:layout_marginTop="700dp"
+        android:layout_marginTop="650dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/round_button"
         android:fontFamily="@font/antic"
@@ -219,8 +216,8 @@
         android:id="@+id/clear_button"
         android:layout_width="115dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="700dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="650dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/round_button"
         android:fontFamily="@font/antic"

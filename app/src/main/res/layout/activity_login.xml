@@ -23,7 +23,7 @@
             android:layout_marginTop="170dp"
             android:layout_marginBottom="80dp"
             android:fontFamily="casual"
-            android:text="TripMate"
+            android:text="@string/tripmate"
             android:textAllCaps="false"
             android:textColor="#FB6A34"
             android:textSize="58sp"
@@ -35,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:hint="Enter your email">
+            android:hint="@string/enter_your_email">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/emailEditText"
@@ -44,6 +44,7 @@
                 android:inputType="textEmailAddress"
                 android:fontFamily="@font/antic"
                 android:background="@drawable/round_text"
+                android:textColor="@color/black"
                 android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -52,7 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:hint="Enter your password"
+            android:hint="@string/enter_your_password"
             app:errorEnabled="true"
             app:passwordToggleEnabled="true">
 
@@ -62,6 +63,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/antic"
                 android:background="@drawable/round_text"
+                android:textColor="@color/black"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
         <!-- Snippet from "Add buttons" section goes here. -->
@@ -74,7 +76,7 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/round_button"
             android:fontFamily="@font/antic"
-            android:text="Login"
+            android:text="@string/login"
             android:textAllCaps="false"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -88,7 +90,7 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/round_button"
             android:fontFamily="@font/antic"
-            android:text="Sign Up"
+            android:text="@string/sign_up"
             android:textAllCaps="false"
             android:textColor="#333333"
             android:textSize="24sp"

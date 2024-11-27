@@ -36,6 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
+            android:textColor="@color/black"
             android:background="@drawable/round_text"
             android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -60,6 +61,7 @@
             android:layout_height="56dp"
             android:layout_marginLeft="13dp"
             android:layout_marginRight="20dp"
+            android:textColor="@color/black"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -74,7 +76,8 @@
         android:hint="Confirm password"
         app:counterEnabled="true"
         app:errorEnabled="true"
-        app:passwordToggleEnabled="true">
+        app:passwordToggleEnabled="true"
+        tools:ignore="HardcodedText">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/confirmPasswordEditText"
@@ -83,6 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="13dp"
             android:layout_marginRight="20dp"
+            android:textColor="@color/black"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 

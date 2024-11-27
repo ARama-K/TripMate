@@ -10,7 +10,7 @@
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/barChart"
         android:layout_width="match_parent"
-        android:layout_height="450dp"
+        android:layout_height="400dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
@@ -24,7 +24,7 @@
         android:layout_marginLeft="25dp"
         android:layout_marginTop="35dp"
         android:fontFamily="@font/antic"
-        android:text="From"
+        android:text="@string/from"
         android:textSize="20sp"
         android:textStyle="bold"
         tools:ignore="RtlHardcoded" />
@@ -47,7 +47,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:fontFamily="@font/antic"
-        android:text="To"
+        android:text="@string/to"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -67,8 +67,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/date_bar_picker_end"
         android:layout_marginLeft="160dp"
-        android:layout_marginTop="40dp"
-        android:text="Set"
+        android:layout_marginTop="0dp"
+        android:text="@string/set"
         android:background="@drawable/round_button"
         android:fontFamily="@font/antic"
         android:textAllCaps="false"
